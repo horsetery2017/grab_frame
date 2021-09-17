@@ -4,6 +4,7 @@ class grab_property(bpy.types.PropertyGroup):
     count:bpy.props.IntProperty(default=4)
     
 class grab_forward(bpy.types.Operator):
+    '''grab forward'''
     bl_idname = "wm.grab_forward"
     bl_label = "grab_forward"
     def execute(self,context):
@@ -15,6 +16,7 @@ class grab_forward(bpy.types.Operator):
             return {'CANCELLED'}
         
 class grab_back(bpy.types.Operator):
+    '''grab back'''
     bl_idname = "wm.grab_back"
     bl_label = "grab_back"
     def execute(self,context):
@@ -27,6 +29,7 @@ class grab_back(bpy.types.Operator):
 
 addon_keymaps=[]
 class grab_frame_panel(bpy.types.Panel):
+    '''grab_frame_panel'''
     bl_idname = "VIEW3D_PT_grab_frame"
     bl_label = "grab_frame"
     bl_space_type = 'VIEW_3D'
@@ -38,8 +41,8 @@ class grab_frame_panel(bpy.types.Panel):
         row = self.layout.row()
         row.label(text = "count:")
         row.prop(props,"count")
-        row.operator("wm.grab_back",text="<")        
-        row.operator("wm.grab_forward",text=">")
+        row.operator("wm.grab_back",text="<",text_ctxt="grab_back")        
+        row.operator("wm.grab_forward",text=">",text_ctxt="grab_forward")
         
 def register():
     #bpy.types.Scene.grab_count  = bpy.props.IntProperty(name="grab_frame_count",default=4)
